@@ -3,11 +3,26 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server",
-    "test": "jest"
+    "start": "babel-node ./src/index.js",
+    "dev": "nodemon npx start",
+    "test": "jest",
+    "lint": "eslint . --ignore-path ../.gitignore"
   },
   "dependencies": {
+    "@hapi/joi": "^16.1.7",
     "express": "~4.16.0",
     "jest": "^24.7.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "babel-eslint": "^10.0.3",
+    "eslint": "^6.5.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.19.0",
+    "nodemon": "^1.19.3",
+    "supertest": "^4.0.2"
   }
 }
