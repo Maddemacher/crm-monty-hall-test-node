@@ -1,46 +1,39 @@
-import React, { Component } from "react";
+import React from 'react';
 import axios from 'axios';
 import './ServerHealth.css';
 
-class ServerHealth extends Component {
+const states = {
+  unknown: 'UNKNOWN',
+  up: 'UP',
+  down: 'DOWN'
+};
 
-  constructor(props) {
-    super(props);
-    this.state = { serverHealth: 'UNKNOWN' };
-  }
+const ServerHealth = () => {
+  const [serverHealth, setServerHealth] = React.useState(states.unknown);
 
-  componentDidMount() {
-    this.getHealth();
-    this.interval = setInterval(this.getHealth, 3000);
-  }
+  React.useEffect(() => {
+    getHealth();
+    const interval = setInterval(getHealth, 3000);
+    return () => clearInterval(interval);
+  });
 
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  getHealth = () => {
-    axios.get('/health')
-      .then(res => {
-        if (res.status === 200) {
-          this.setState({ serverHealth: 'UP' });
-        } else {
-          this.setState({ serverHealth: 'DOWN' });
-        }
-      })
-      .catch(res => {
-        console.log(res);
-        this.setState({ serverHealth: 'DOWN' });
-      });
+  const getHealth = async () => {
+    try {
+      const res = await axios.get('/health');
+      return setServerHealth(res.status === 200 ? states.up : states.down);
+    } catch (error) {
+      console.log(error);
+      return setServerHealth(states.down);
+    }
   };
 
-  render() {
-    return (
-      <div className="serverHealth">
-        <p>Backend is: <a className={this.state.serverHealth}>{this.state.serverHealth}</a></p>
-      </div>
-    );
-  }
-
-}
+  return (
+    <div className="serverHealth">
+      <p>
+        Backend is: <a className={serverHealth}>{serverHealth}</a>
+      </p>
+    </div>
+  );
+};
 
 export default ServerHealth;

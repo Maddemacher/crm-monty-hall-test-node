@@ -7,6 +7,7 @@ describe('server', () => {
   beforeEach(() => {
     jest.spyOn(montyHall, 'simulate').mockReturnValue(false);
   });
+
   describe('GET /health', () => {
     it('should return 200', async () => {
       const res = await request(app)

@@ -1,12 +1,16 @@
 .serverHealth {
-  color: white;
-  text-align: left;
+    color: white;
+    text-align: left;
 }
 
 .UP {
-  color: lightgreen;
+    color: lightgreen;
 }
 
 .DOWN {
-  color: red;
+    color: red;
+}
+
+.UNKNOWN {
+    color: gray;
 }
