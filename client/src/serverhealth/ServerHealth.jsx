@@ -15,7 +15,7 @@ const ServerHealth = () => {
     getHealth();
     const interval = setInterval(getHealth, 3000);
     return () => clearInterval(interval);
-  });
+  }, []);
 
   const getHealth = async () => {
     try {
