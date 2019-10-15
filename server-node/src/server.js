@@ -24,19 +24,14 @@ app.get('/simulate', (req, res) => {
 
   const { changing, games, doors } = value;
 
-  const results = Array.from({ length: games })
+  const wins = Array.from({ length: games })
     .map(() => simulate({ changing, doors }))
-    .reduce(
-      (acc, curr) => ({
-        wins: curr ? acc.wins + 1 : acc.wins,
-        losses: !curr ? acc.losses + 1 : acc.losses
-      }),
-      { wins: 0, losses: 0 }
-    );
+    .reduce((acc, curr) => acc + (curr ? 1 : 0), 0);
 
   return res.send({
-    ...results,
-    avg: results.wins / games,
+    wins,
+    losses: games - wins,
+    avg: wins / (games || 1),
     games
   });
 });
