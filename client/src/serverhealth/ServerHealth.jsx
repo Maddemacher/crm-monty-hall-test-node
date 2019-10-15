@@ -14,6 +14,7 @@ const ServerHealth = () => {
   React.useEffect(() => {
     getHealth();
     const interval = setInterval(getHealth, 3000);
+
     return () => clearInterval(interval);
   }, []);
 
@@ -30,7 +31,10 @@ const ServerHealth = () => {
   return (
     <div className="serverHealth">
       <p>
-        Backend is: <a className={serverHealth}>{serverHealth}</a>
+        Backend is:{' '}
+        <a data-testid="serverHealth" className={serverHealth}>
+          {serverHealth}
+        </a>
       </p>
     </div>
   );

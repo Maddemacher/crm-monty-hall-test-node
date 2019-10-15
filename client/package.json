@@ -7,9 +7,11 @@
     "qs": "^6.9.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "2.1.8"
+    "react-scripts": "2.1.8",
+    "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@testing-library/react": "^9.3.0",
     "eslint": "^6.5.1",
     "eslint-plugin-jest": "^22.19.0",
     "eslint-plugin-react": "^7.16.0"
