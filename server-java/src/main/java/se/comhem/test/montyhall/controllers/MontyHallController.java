@@ -14,8 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MontyHallController {
+
+    private SimulationService service;
+
     @Autowired
-    private MontyHallService service;
+    public MontyHallController(SimulationService service) {
+        this.service = service;
+    }
 
     @GetMapping("/simulate")
     @ResponseBody

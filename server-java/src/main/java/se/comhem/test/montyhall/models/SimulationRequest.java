@@ -1,9 +1,24 @@
 package se.comhem.test.montyhall.models;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SimulationRequest {
-	private int games = 1;
-	private int doors = 3;
+	private int games;
+	private int doors;
 	private boolean changing;
+
+	public SimulationRequest() {
+		this.games = 1;
+		this.doors = 3;
+
+	}
+
+	public SimulationRequest(int games, int doors, boolean changing) {
+		this.games = games;
+		this.doors = doors;
+		this.changing = changing;
+	}
 
 	public int getGames() {
 		return this.games;

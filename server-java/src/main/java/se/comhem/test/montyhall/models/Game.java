@@ -20,6 +20,11 @@ public class Game {
         this.selectedDoor = r.nextInt(doors);
     }
 
+    public Game(int prize, int selectedDoor) {
+        this.prize = prize;
+        this.selectedDoor = selectedDoor;
+    }
+
     public int getSelectedDoor() {
         return this.selectedDoor;
     }
