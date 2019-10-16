@@ -34,7 +34,7 @@ public class MontyHallController {
 
         final SimulationRequest request = new SimulationRequest(games, doors, changing);
 
-        final SimulationResult result = new SimulationResult(IntStream.range(0, request.getGames())
+        final SimulationResult result = new SimulationResult(IntStream.range(0, request.getGames()).parallel()
                 .mapToObj(idx -> this.service.simulate(request)).collect(Collectors.toList()));
 
         return new ResponseEntity<SimulationResult>(result, HttpStatus.OK);
