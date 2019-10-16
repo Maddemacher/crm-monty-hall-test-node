@@ -5,7 +5,7 @@ import se.comhem.test.montyhall.models.SimulationResult;
 
 import se.comhem.test.montyhall.service.SimulationService;
 
-import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +34,9 @@ public class MontyHallController {
 
         final SimulationRequest request = new SimulationRequest(games, doors, changing);
 
-        final SimulationResult result = new SimulationResult(IntStream.range(0, request.getGames()).parallel()
-                .mapToObj(idx -> this.service.simulate(request)).collect(Collectors.toList()));
+        final SimulationResult result =
+                new SimulationResult(Stream.generate(() -> this.service.simulate(request))
+                        .parallel().limit(games).collect(Collectors.toList()));
 
         return new ResponseEntity<SimulationResult>(result, HttpStatus.OK);
 
