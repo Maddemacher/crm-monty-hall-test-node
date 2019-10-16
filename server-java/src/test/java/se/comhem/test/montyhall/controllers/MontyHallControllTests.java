@@ -70,10 +70,9 @@ public class MontyHallControllTests {
 
     @Test
     public void shouldReturn200WhenQueryIsCorrect() throws Exception {
-        String path = "/simulate?games=hej&changing=true";
+        String path = "/simulate?games=100&changing=true";
 
-        mvc.perform(MockMvcRequestBuilders.get(path).accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest());
+        mvc.perform(MockMvcRequestBuilders.get(path).accept(MediaType.APPLICATION_JSON)).andExpect(status().isOk());
     }
 
 }

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,10 +28,11 @@ public class MontyHallController {
 
     @GetMapping("/simulate")
     @ResponseBody
-    public ResponseEntity<?> simulate(SimulationRequest request) {
-        if (request == null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-        }
+    public ResponseEntity<?> simulate(@RequestParam(required = true) int games,
+            @RequestParam(required = false, defaultValue = "3") int doors,
+            @RequestParam(required = true) boolean changing) {
+
+        SimulationRequest request = new SimulationRequest(games, doors, changing);
 
         final SimulationResult result = new SimulationResult(IntStream.range(0, request.getGames())
                 .mapToObj(idx -> this.service.simulate(request)).collect(Collectors.toList()));
