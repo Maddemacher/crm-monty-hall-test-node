@@ -4,17 +4,14 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SimulationRequest {
-	private int games;
-	private int doors;
-	private boolean changing;
+	private final int games;
+	private final int doors;
+	private final boolean changing;
 
-	public SimulationRequest() {
-		this.games = 1;
-		this.doors = 3;
-
-	}
-
-	public SimulationRequest(int games, int doors, boolean changing) {
+	@JsonCreator
+	public SimulationRequest(@JsonProperty(value = "games", required = true) int games,
+			@JsonProperty(value = "doors", required = true) int doors,
+			@JsonProperty(value = "changing") boolean changing) {
 		this.games = games;
 		this.doors = doors;
 		this.changing = changing;
@@ -24,23 +21,11 @@ public class SimulationRequest {
 		return this.games;
 	}
 
-	public void setGames(int games) {
-		this.games = games;
-	}
-
 	public int getDoors() {
 		return this.doors;
 	}
 
-	public void setDoors(int doors) {
-		this.doors = doors;
-	}
-
 	public boolean getChanging() {
 		return this.changing;
-	}
-
-	public void setChanging(boolean changing) {
-		this.changing = changing;
 	}
 }

@@ -1,9 +1,12 @@
 package se.comhem.test.montyhall.controllers;
 
-import se.comhem.test.montyhall.models.*;
-import se.comhem.test.montyhall.service.*;
+import se.comhem.test.montyhall.models.SimulationRequest;
+import se.comhem.test.montyhall.models.SimulationResult;
 
-import java.util.stream.*;
+import se.comhem.test.montyhall.service.SimulationService;
+
+import java.util.stream.IntStream;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MontyHallController {
 
-    private SimulationService service;
+    private final SimulationService service;
 
     @Autowired
     public MontyHallController(SimulationService service) {
@@ -29,7 +32,7 @@ public class MontyHallController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
 
-        SimulationResult result = new SimulationResult(IntStream.range(0, request.getGames())
+        final SimulationResult result = new SimulationResult(IntStream.range(0, request.getGames())
                 .mapToObj(idx -> this.service.simulate(request)).collect(Collectors.toList()));
 
         return new ResponseEntity<SimulationResult>(result, HttpStatus.OK);

@@ -11,7 +11,7 @@ import se.comhem.test.montyhall.models.SimulationRequest;
 @Service
 public class SimulationServiceImpl implements SimulationService {
 
-    GameFactory gameFactory;
+    private final GameFactory gameFactory;
 
     @Autowired
     public SimulationServiceImpl(GameFactory gameFactory) {

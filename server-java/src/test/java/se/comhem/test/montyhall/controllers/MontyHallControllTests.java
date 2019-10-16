@@ -1,7 +1,5 @@
 package se.comhem.test.montyhall.controllers;
 
-import static org.hamcrest.Matchers.equalTo;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Before;
@@ -15,11 +13,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MockMvcBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import se.comhem.test.montyhall.models.SimulationRequest;
 import se.comhem.test.montyhall.service.SimulationService;
 
 @RunWith(SpringRunner.class)
@@ -36,8 +32,6 @@ public class MontyHallControllTests {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-
-        // when(this.mockService.simulate(any(SimulationRequest.class))).thenReturn(true);
 
         this.mvc = MockMvcBuilders.standaloneSetup(new MontyHallController(this.mockService)).build();
     }
