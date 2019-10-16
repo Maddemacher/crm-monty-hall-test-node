@@ -22,17 +22,17 @@ public class MontyHallController {
     private final SimulationService service;
 
     @Autowired
-    public MontyHallController(SimulationService service) {
+    public MontyHallController(final SimulationService service) {
         this.service = service;
     }
 
     @GetMapping("/simulate")
     @ResponseBody
-    public ResponseEntity<?> simulate(@RequestParam(required = true) int games,
-            @RequestParam(required = false, defaultValue = "3") int doors,
-            @RequestParam(required = true) boolean changing) {
+    public ResponseEntity<?> simulate(@RequestParam(required = true) final int games,
+            @RequestParam(required = false, defaultValue = "3") final int doors,
+            @RequestParam(required = true) final boolean changing) {
 
-        SimulationRequest request = new SimulationRequest(games, doors, changing);
+        final SimulationRequest request = new SimulationRequest(games, doors, changing);
 
         final SimulationResult result = new SimulationResult(IntStream.range(0, request.getGames())
                 .mapToObj(idx -> this.service.simulate(request)).collect(Collectors.toList()));

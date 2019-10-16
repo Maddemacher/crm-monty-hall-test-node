@@ -8,7 +8,7 @@ import se.comhem.test.montyhall.models.Game;
 @Service
 public class GameFactoryImpl implements GameFactory {
 
-    public Game createGame(int doors) {
+    public Game createGame(final int doors) {
         return new Game(doors);
     }
 

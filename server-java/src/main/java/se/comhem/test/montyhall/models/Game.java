@@ -13,14 +13,14 @@ public class Game {
         this.selectedDoor = r.nextInt(3);
     }
 
-    public Game(int doors) {
+    public Game(final int doors) {
         Random r = new Random();
 
         this.prize = r.nextInt(doors);
         this.selectedDoor = r.nextInt(doors);
     }
 
-    public Game(int prize, int selectedDoor) {
+    public Game(final int prize, final int selectedDoor) {
         this.prize = prize;
         this.selectedDoor = selectedDoor;
     }

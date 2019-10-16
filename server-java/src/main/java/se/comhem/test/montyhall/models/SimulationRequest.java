@@ -5,7 +5,7 @@ public class SimulationRequest {
 	private final int doors;
 	private final boolean changing;
 
-	public SimulationRequest(int games, int doors, boolean changing) {
+	public SimulationRequest(final int games, final int doors, final boolean changing) {
 		this.games = games;
 		this.doors = doors;
 		this.changing = changing;

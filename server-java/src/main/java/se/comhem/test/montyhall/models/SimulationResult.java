@@ -6,7 +6,7 @@ public class SimulationResult {
     private int wins;
     private int games;
 
-    public SimulationResult(List<Boolean> results) {
+    public SimulationResult(final List<Boolean> results) {
         this.wins = (int) results.stream().filter(res -> res).count();
         this.games = (int) results.size();
     }
@@ -15,7 +15,7 @@ public class SimulationResult {
         return this.wins;
     }
 
-    public void setWins(int wins) {
+    public void setWins(final int wins) {
         this.wins = wins;
     }
 
@@ -27,7 +27,7 @@ public class SimulationResult {
         return this.games;
     }
 
-    public void setGames(int games) {
+    public void setGames(final int games) {
         this.games = games;
     }
 

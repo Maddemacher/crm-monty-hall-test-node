@@ -14,11 +14,11 @@ public class SimulationServiceImpl implements SimulationService {
     private final GameFactory gameFactory;
 
     @Autowired
-    public SimulationServiceImpl(GameFactory gameFactory) {
+    public SimulationServiceImpl(final GameFactory gameFactory) {
         this.gameFactory = gameFactory;
     }
 
-    public boolean simulate(SimulationRequest request) {
+    public boolean simulate(final SimulationRequest request) {
         Game game = this.gameFactory.createGame(request.getDoors());
 
         if (request.getChanging()) {
