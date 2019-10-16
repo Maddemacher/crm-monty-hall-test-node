@@ -3,8 +3,8 @@ package se.comhem.test.montyhall.models;
 import java.util.List;
 
 public class SimulationResult {
-    private int wins;
-    private int games;
+    private final int wins;
+    private final int games;
 
     public SimulationResult(final List<Boolean> results) {
         this.wins = (int) results.stream().filter(res -> res).count();
@@ -15,20 +15,12 @@ public class SimulationResult {
         return this.wins;
     }
 
-    public void setWins(final int wins) {
-        this.wins = wins;
-    }
-
     public int getLosses() {
         return this.games - this.wins;
     }
 
     public int getGames() {
         return this.games;
-    }
-
-    public void setGames(final int games) {
-        this.games = games;
     }
 
     public float getAvg() {
