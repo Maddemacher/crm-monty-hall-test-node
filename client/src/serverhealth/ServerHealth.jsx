@@ -32,9 +32,9 @@ const ServerHealth = () => {
     <div className="serverHealth">
       <p>
         Backend is:{' '}
-        <a data-testid="serverHealth" className={serverHealth}>
+        <span data-testid="serverHealth" className={serverHealth}>
           {serverHealth}
-        </a>
+        </span>
       </p>
     </div>
   );
