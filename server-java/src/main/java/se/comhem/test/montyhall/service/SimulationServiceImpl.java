@@ -19,7 +19,7 @@ public class SimulationServiceImpl implements SimulationService {
     }
 
     public boolean simulate(final SimulationRequest request) {
-        Game game = this.gameFactory.createGame(request.getDoors());
+        final Game game = this.gameFactory.createGame(request.getDoors());
 
         if (request.getChanging()) {
             return game.getSelectedDoor() != game.getPrize();
